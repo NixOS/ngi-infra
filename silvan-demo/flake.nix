@@ -15,7 +15,7 @@
       modules =
         [
           "${nixpkgs}/nixos/modules/virtualisation/amazon-image.nix"
-          ../../modules/common.nix
+          ../modules/common.nix
           ({ config, pkgs, ... }:
           {
             ec2.hvm = true;
@@ -24,7 +24,7 @@
             system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
             nix.package = pkgs.nixUnstable;
             nix.registry.nixpkgs.flake = nixpkgs;
-            users.users.root.openssh.authorizedKeys.keys = with import ../../ssh-keys.nix; [ silvan ];
+            users.users.root.openssh.authorizedKeys.keys = with import ../ssh-keys.nix; [ silvan ];
           })
         ];
     };

@@ -9,7 +9,7 @@
       system = "x86_64-linux";
 
       modules = [
-        ../../modules/common.nix
+        ../modules/common.nix
         hydra.nixosModules.hydra
         ./hydra.nix
         ./hydra-proxy.nix
@@ -101,7 +101,7 @@
           boot.loader.grub.copyKernels = true;
 
           users.extraUsers.root.openssh.authorizedKeys.keys =
-            (import ../../ssh-keys.nix).ngi-admins;
+            (import ../ssh-keys.nix).ngi-admins;
         })
       ];
     };
