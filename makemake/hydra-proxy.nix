@@ -56,7 +56,7 @@ in
         '';
         servedDirs =
           [ { urlPath = "/apache-errors";
-              dir = ../../delft/apache-errors;
+              dir = ../delft/apache-errors;
             }
           ];
       };
