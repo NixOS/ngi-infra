@@ -9,7 +9,12 @@
 
       modules = [
         ../modules/common.nix
+
+        # Use NixOS module for pinned Hydra, but note that this doesn't
+        # set the package to be from that repo.  It juse uses the stock
+        # `pkgs.hydra_unstable` by default.
         hydra.nixosModules.hydra
+
         ./hydra.nix
         ./hydra-proxy.nix
         ./hardware.nix
@@ -18,6 +23,10 @@
 
           networking.hostName = "makemake";
 
+          # Here, set the Hydra package to use the (complete
+          # self-contained, pinning nix, nixpkgs, etc.) default Hydra
+          # build. Other than this one package, those pins versions are
+          # not used.
           services.hydra.package = hydra.packages.x86_64-linux.default;
 
           #system.configurationRevision = self.rev
