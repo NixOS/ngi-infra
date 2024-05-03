@@ -1,10 +1,9 @@
 {
-  inputs.nixpkgs.follows = "hydra/nixpkgs";
-  inputs.nix.follows = "hydra/nix";
-  inputs.hydra.url = "github:nixos/hydra/nix-next";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.hydra.url = "github:NixOS/hydra/nix-next";
 
-  outputs = { self, nixpkgs, nix, hydra }: {
-
+  outputs = { self, nixpkgs, hydra }: {
+    inherit hydra;
     nixosConfigurations.makemake = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
@@ -19,9 +18,7 @@
 
           networking.hostName = "makemake";
 
-          nixpkgs.overlays =
-            [ nix.overlays.default
-            ];
+          services.hydra.package = hydra.packages.x86_64-linux.default;
 
           #system.configurationRevision = self.rev
           #  or (throw "Cannot deploy from an unclean source tree!");
