@@ -3,7 +3,7 @@
   inputs.hydra.url = "github:NixOS/hydra/nix-next";
 
   outputs = { self, nixpkgs, hydra }: {
-    inherit hydra;
+
     nixosConfigurations.makemake = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
